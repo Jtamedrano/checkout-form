@@ -1,40 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BillingInfo } from './BillingInfo';
+import { CardInfo } from './CardInfo';
+import { InfoContext, IBillingDetail, ICard } from './context/cardContext';
 
 interface AppProps {}
 
+const cardInfo: ICard = {
+  card_number: undefined,
+  cardholder_name: undefined,
+  ccv: undefined,
+  expiration_month: undefined,
+  expiration_year: undefined,
+};
+const billingInfo: IBillingDetail = {
+  address: undefined,
+  city: undefined,
+  first_name: undefined,
+  last_name: undefined,
+  state: undefined,
+  zip_code: undefined,
+};
+
 function App({}: AppProps) {
-  // Create the count state.
-  const [count, setCount] = useState(0);
-  // Create the counter (+1 every second).
-  useEffect(() => {
-    const timer = setTimeout(() => setCount(count + 1), 1000);
-    return () => clearTimeout(timer);
-  }, [count, setCount]);
-  // Return the App component.
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <p>
-          Page has been open for <code>{count}</code> seconds.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
-    </div>
+    <InfoContext.Provider value={{ cardInfo, billingInfo, isLoading: false }}>
+      <div className="App">
+        <div>
+          <section>
+            <h1>Checkout</h1>
+            <h2>Credit Card Details</h2>
+          </section>
+          <section>
+            <form>
+              <CardInfo />
+              <BillingInfo />
+              <button type="submit">SUBMIT</button>
+            </form>
+          </section>
+        </div>
+      </div>
+    </InfoContext.Provider>
   );
 }
 
