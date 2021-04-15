@@ -80,24 +80,28 @@ export const BillingInfo = ({ billing, setBilling }: BillingInfoProps) => {
         label="FIRST NAME"
         value={billing.first_name}
         name="first_name"
+        placeholder="First Name"
         onChange={handleChange}
       />
       <Input
         label="LAST NAME"
         value={billing.last_name}
         name="last_name"
+        placeholder="Last Name"
         onChange={handleChange}
       />
       <Input
         label="ADDRESS"
         value={billing.address}
         name="address"
+        placeholder="Street Address"
         onChange={handleChange}
       />
       <Input
         label="CITY"
         value={billing.city}
         name="city"
+        placeholder="City"
         onChange={handleChange}
       />
       <div className="inputGroup">
@@ -114,6 +118,7 @@ export const BillingInfo = ({ billing, setBilling }: BillingInfoProps) => {
         label="ZIP CODE"
         value={billing.zip_code}
         name="zip_code"
+        placeholder="Zip Code"
         onChange={handleChange}
       />
     </>

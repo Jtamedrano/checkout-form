@@ -19,6 +19,7 @@ export const CardInfo = ({ card, setCard }: CardInfoProps) => {
       <Input
         label="CARDHOLDER NAME"
         name="cardholder_name"
+        placeholder="Cardholder Name"
         value={card.cardholder_name}
         onChange={handleInputChange}
       />
@@ -40,6 +41,7 @@ export const CardInfo = ({ card, setCard }: CardInfoProps) => {
       <Input
         label="CCV"
         type="number"
+        placeholder="CCV"
         maxLength={5}
         name="ccv"
         value={card.ccv}

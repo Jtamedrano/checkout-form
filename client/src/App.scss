@@ -32,8 +32,11 @@ input[type='number'] {
   button {
     margin-top: 2em;
     background-color: teal;
+    color: white;
     padding: 1em;
     border: none;
+    max-width: 200px;
+    width: 100%;
   }
 }
 

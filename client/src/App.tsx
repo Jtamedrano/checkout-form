@@ -28,6 +28,8 @@ function App({}: AppProps) {
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     alert('Form Submited');
+    setCardInfo(initCard);
+    setBillInfo(initBilling);
   };
 
   return (
