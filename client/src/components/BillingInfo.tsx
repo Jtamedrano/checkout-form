@@ -100,14 +100,16 @@ export const BillingInfo = ({ billing, setBilling }: BillingInfoProps) => {
         name="city"
         onChange={handleChange}
       />
-      <label>STATE</label>
-      <select value={billing.state} name="state" onChange={handleChange}>
-        {states.map((s, i) => (
-          <option key={`state-${i + 1}`} value={s}>
-            {s}
-          </option>
-        ))}
-      </select>
+      <div className="inputGroup">
+        <label>STATE</label>
+        <select value={billing.state} name="state" onChange={handleChange}>
+          {states.map((s, i) => (
+            <option key={`state-${i + 1}`} value={s}>
+              {s}
+            </option>
+          ))}
+        </select>
+      </div>
       <Input
         label="ZIP CODE"
         value={billing.zip_code}

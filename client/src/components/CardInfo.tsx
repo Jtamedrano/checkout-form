@@ -1,18 +1,19 @@
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { ExpirationSelector } from './ExpirationSelector';
 import Input from './input';
-
+import Cleave from 'cleave.js/react';
 interface CardInfoProps {
   card: ICard;
   setCard: React.Dispatch<React.SetStateAction<ICard>>;
 }
 
 export const CardInfo = ({ card, setCard }: CardInfoProps) => {
+  const [cardForm, setCardForm] = useState(card.card_number);
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCard({ ...card, [e.target.name]: e.target.value });
   };
 
-  console.log(card);
   return (
     <>
       <Input
@@ -21,15 +22,21 @@ export const CardInfo = ({ card, setCard }: CardInfoProps) => {
         value={card.cardholder_name}
         onChange={handleInputChange}
       />
-      <Input
-        label="CARD NUMBER"
-        type="number"
-        minLength={16}
-        name="card_number"
-        value={card.card_number}
-        onChange={handleInputChange}
-      />
       <ExpirationSelector card={card} setCard={setCard} />
+      <Input label="CARD NUMBER">
+        <Cleave
+          placeholder="Card Number"
+          name="card_number"
+          options={{ creditCard: true }}
+          onChange={(e) => {
+            const event = {
+              ...e,
+              target: { ...e.target, value: e.target.rawValue },
+            };
+            handleInputChange(event);
+          }}
+        />
+      </Input>
       <Input
         label="CCV"
         type="number"

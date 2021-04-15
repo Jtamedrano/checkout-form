@@ -4,12 +4,12 @@ interface InputCompProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
 }
 
-const Input = ({ label, ...rest }: InputCompProps) => {
+const Input = ({ label, children, ...rest }: InputCompProps) => {
   return (
     <>
-      <div>
+      <div className="inputGroup">
         <label>{label}</label>
-        <input {...rest} />
+        {children ? children : <input {...rest} />}
       </div>
     </>
   );

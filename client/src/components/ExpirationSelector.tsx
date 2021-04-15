@@ -38,32 +38,36 @@ export const ExpirationSelector = ({ card, setCard }: ExpSelProps) => {
   };
   return (
     <>
-      <label htmlFor="">EXPIRATION</label>
-      <select
-        name="expiration_month"
-        value={card.expiration_month}
-        onChange={handleOnSelect}
-      >
-        <option>MM</option>
-        {months.map((m) => (
-          <option key={m} value={m}>
-            {m}
-          </option>
-        ))}
-      </select>{' '}
-      {'/'}
-      <select
-        name="expiration_year"
-        value={card.expiration_year}
-        onChange={handleOnSelect}
-      >
-        <option>YY</option>
-        {years.map((el) => (
-          <option value={el} key={`yy-${el}`}>
-            {el}
-          </option>
-        ))}
-      </select>
+      <div className="inputGroup">
+        <label htmlFor="">EXPIRATION</label>
+        <div className="expSwitch">
+          <select
+            name="expiration_month"
+            value={card.expiration_month}
+            onChange={handleOnSelect}
+          >
+            <option>MM</option>
+            {months.map((m) => (
+              <option key={m} value={m}>
+                {m}
+              </option>
+            ))}
+          </select>
+          {'/'}
+          <select
+            name="expiration_year"
+            value={card.expiration_year}
+            onChange={handleOnSelect}
+          >
+            <option>YY</option>
+            {years.map((el) => (
+              <option value={el} key={`yy-${el}`}>
+                {el}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
     </>
   );
 };

@@ -27,22 +27,26 @@ function App({}: AppProps) {
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
+    alert('Form Submited');
   };
 
   return (
     <div className="App">
-      <div className="FormContainer">
-        <section>
-          <h1>Checkout</h1>
-          <h2>Credit Card Details</h2>
-        </section>
-        <section>
-          <form onSubmit={onSubmit}>
+      <div className="FormObjects">
+        <form onSubmit={onSubmit} className="FormContainer">
+          <section className="headerBar">
+            <h1>Checkout</h1>
+            <h2>Credit Card Details</h2>
+          </section>
+          <section className="formWrapper">
             <CardInfo card={cardInfo} setCard={setCardInfo} />
+            <section className="headerBar">
+              <h2>Billing Details</h2>
+            </section>
             <BillingInfo billing={billInfo} setBilling={setBillInfo} />
-            <button type="submit">SUBMIT</button>
-          </form>
-        </section>
+          </section>
+        </form>
+        <button onClick={onSubmit}>SUBMIT</button>
       </div>
     </div>
   );
