@@ -1,4 +1,5 @@
-import React, { createContext } from 'react';
+import React, { createContext, useReducer } from 'react';
+import { InfoReducer } from './InfoReducer';
 
 export interface ICard {
   cardholder_name?: string;
@@ -16,11 +17,11 @@ export interface IBillingDetail {
   zip_code?: number;
 }
 
-export const InfoContext = createContext<{
-  cardInfo: ICard;
-  billingInfo: IBillingDetail;
-  isLoading: boolean;
-}>({
+export enum ReducerTypes {
+  UpdateInfo,
+}
+
+export const initialState = {
   cardInfo: {
     cardholder_name: undefined,
     card_number: undefined,
@@ -37,4 +38,18 @@ export const InfoContext = createContext<{
     zip_code: undefined,
   },
   isLoading: false,
-});
+};
+
+export const InfoContext = createContext({});
+
+export const InfoProvider: React.FC = ({ children }) => {
+  const [globalState, dispatch] = useReducer(InfoReducer, initialState);
+
+  return (
+    <>
+      <InfoContext.Provider value={[globalState, dispatch]}>
+        {children}
+      </InfoContext.Provider>
+    </>
+  );
+};

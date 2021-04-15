@@ -1,7 +1,12 @@
 import React from 'react';
 import { BillingInfo } from './BillingInfo';
 import { CardInfo } from './CardInfo';
-import { InfoContext, IBillingDetail, ICard } from './context/cardContext';
+import {
+  InfoContext,
+  IBillingDetail,
+  ICard,
+  InfoProvider,
+} from './context/cardContext';
 
 interface AppProps {}
 
@@ -23,7 +28,7 @@ const billingInfo: IBillingDetail = {
 
 function App({}: AppProps) {
   return (
-    <InfoContext.Provider value={{ cardInfo, billingInfo, isLoading: false }}>
+    <InfoProvider>
       <div className="App">
         <div>
           <section>
@@ -39,7 +44,7 @@ function App({}: AppProps) {
           </section>
         </div>
       </div>
-    </InfoContext.Provider>
+    </InfoProvider>
   );
 }
 
