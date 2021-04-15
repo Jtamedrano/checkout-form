@@ -1,50 +1,50 @@
-import React from 'react';
-import { BillingInfo } from './BillingInfo';
-import { CardInfo } from './CardInfo';
-import {
-  InfoContext,
-  IBillingDetail,
-  ICard,
-  InfoProvider,
-} from './context/cardContext';
+import React, { FormEvent, useState } from 'react';
+import { BillingInfo } from './components/BillingInfo';
+import { CardInfo } from './components/CardInfo';
+import './App.scss';
 
 interface AppProps {}
 
-const cardInfo: ICard = {
-  card_number: undefined,
-  cardholder_name: undefined,
-  ccv: undefined,
-  expiration_month: undefined,
-  expiration_year: undefined,
+const initCard = {
+  card_number: '',
+  cardholder_name: '',
+  ccv: '',
+  expiration_month: '',
+  expiration_year: '',
 };
-const billingInfo: IBillingDetail = {
-  address: undefined,
-  city: undefined,
-  first_name: undefined,
-  last_name: undefined,
-  state: undefined,
-  zip_code: undefined,
+const initBilling = {
+  address: '',
+  city: '',
+  first_name: '',
+  last_name: '',
+  state: '',
+  zip_code: '',
 };
 
 function App({}: AppProps) {
+  const [cardInfo, setCardInfo] = useState<ICard>(initCard);
+  const [billInfo, setBillInfo] = useState<IBilling>(initBilling);
+
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+  };
+
   return (
-    <InfoProvider>
-      <div className="App">
-        <div>
-          <section>
-            <h1>Checkout</h1>
-            <h2>Credit Card Details</h2>
-          </section>
-          <section>
-            <form>
-              <CardInfo />
-              <BillingInfo />
-              <button type="submit">SUBMIT</button>
-            </form>
-          </section>
-        </div>
+    <div className="App">
+      <div className="FormContainer">
+        <section>
+          <h1>Checkout</h1>
+          <h2>Credit Card Details</h2>
+        </section>
+        <section>
+          <form onSubmit={onSubmit}>
+            <CardInfo card={cardInfo} setCard={setCardInfo} />
+            <BillingInfo billing={billInfo} setBilling={setBillInfo} />
+            <button type="submit">SUBMIT</button>
+          </form>
+        </section>
       </div>
-    </InfoProvider>
+    </div>
   );
 }
 

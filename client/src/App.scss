@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(46, 43, 43);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.FormContainer {
+  min-width: 50%;
+  background-color: rgb(245, 245, 245);
+  border-top: 8px solid teal;
+  padding: 1em 2em;
+}
